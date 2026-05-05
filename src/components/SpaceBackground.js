@@ -1,9 +1,16 @@
 'use client';
 import { motion, useTime, useTransform, AnimatePresence } from 'framer-motion';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 const StarField = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const stars = useMemo(() => {
+    if (!mounted) return [];
     return Array.from({ length: 60 }).map((_, i) => ({
       id: i,
       left: Math.random() * 100,
@@ -12,7 +19,9 @@ const StarField = () => {
       opacity: Math.random() * 0.4 + 0.1,
       duration: 60 + Math.random() * 120, // Very slow drift
     }));
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) return null;
 
   return (
     <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: -2 }}>
