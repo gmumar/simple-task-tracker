@@ -2,11 +2,72 @@
 import { motion, useTime, useTransform, AnimatePresence } from 'framer-motion';
 import { useMemo } from 'react';
 
+const StarField = () => {
+  const stars = useMemo(() => {
+    return Array.from({ length: 60 }).map((_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: Math.random() * 2 + 0.5,
+      opacity: Math.random() * 0.4 + 0.1,
+      duration: 60 + Math.random() * 120, // Very slow drift
+    }));
+  }, []);
+
+  return (
+    <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: -2 }}>
+      {/* Layer 1 */}
+      <motion.div
+        animate={{ x: ['0%', '-100%'] }}
+        transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+      >
+        {stars.map(star => (
+          <div
+            key={star.id}
+            style={{
+              position: 'absolute',
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              backgroundColor: '#fff',
+              borderRadius: '50%',
+              opacity: star.opacity,
+            }}
+          />
+        ))}
+      </motion.div>
+      {/* Layer 2 (Seamless loop) */}
+      <motion.div
+        animate={{ x: ['100%', '0%'] }}
+        transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+      >
+        {stars.map(star => (
+          <div
+            key={`loop-${star.id}`}
+            style={{
+              position: 'absolute',
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              backgroundColor: '#fff',
+              borderRadius: '50%',
+              opacity: star.opacity,
+            }}
+          />
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
 const TrailPoint = ({ time, offset, speed, rotationSpeed, radius, size, color, delay, opacityMult }) => {
   const left = useTransform(time, t => {
     const period = speed * 1000;
     const progress = ((t + offset - delay) % period) / period;
-    // Keep it strictly within the frame, using mask to fade edges
     return `${progress * 100}%`;
   });
 
@@ -145,6 +206,7 @@ export default function SpaceBackground({ tasks = [] }) {
       maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
       WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
     }}>
+      <StarField />
       <AnimatePresence>
         {particles.map(p => (
           <motion.div
