@@ -1,0 +1,411 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: var(--tracking-tight);
+  background: var(--grad-blue-purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.actions {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all var(--transition-speed);
+}
+
+.iconButton:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.iconButtonActive {
+  background: var(--grad-blue-purple) !important;
+  color: white !important;
+  border: none;
+  box-shadow: 0 0 20px rgba(58, 123, 213, 0.4);
+}
+
+.mainCard {
+  background: var(--surface-color);
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.navRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: var(--text-secondary);
+  transition: all var(--transition-speed);
+}
+
+.navButton:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.currentWeek {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Task List */
+.taskList {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px; /* Space for the FAB */
+}
+
+.taskItem {
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  background-color: transparent;
+  border-left: 0px solid transparent;
+  transition: background-color 0.5s ease, border-left 0.3s ease;
+}
+
+.taskItem:last-child {
+  border-bottom: none;
+}
+
+.taskItem:hover {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.taskItemCompleted {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.taskItemCompleted[style*="--status-color"] {
+  background-color: color-mix(in srgb, var(--status-color) 25%, transparent);
+  border-left: 6px solid var(--status-color);
+}
+
+.taskItemCompleted .taskTitle {
+  color: white;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  opacity: 0.8;
+}
+
+.taskItemCompleted .taskDescription {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.taskContent {
+  flex: 1;
+  transition: opacity var(--transition-speed);
+  cursor: pointer;
+}
+
+.taskContent:hover {
+  opacity: 0.8;
+}
+
+.taskTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+
+.taskDescription {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
+}
+
+.taskDate {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: 0.3rem;
+}
+
+.taskActions {
+  display: flex;
+  gap: 0.6rem;
+  margin-left: 1.5rem;
+}
+
+.taskBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all var(--transition-speed);
+  opacity: 0.6;
+}
+
+.taskBtn:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btnWin { color: var(--status-win); }
+.btnLose { color: var(--status-lose); }
+.btnCancel { color: var(--status-cancelled); }
+.btnComplete { color: var(--status-complete); }
+.btnDelete { color: var(--status-lose); opacity: 0.6; }
+.btnReopen { color: #ffffff; opacity: 1; }
+
+.taskBtn:hover.btnDelete {
+  background: var(--status-lose);
+  color: white;
+  opacity: 1;
+}
+
+.taskBtn:hover.btnReopen {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.statusBadge {
+  margin-top: 0.6rem;
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: white;
+}
+
+/* Floating Action Button */
+.fab {
+  position: absolute;
+  bottom: 0.875rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--grad-blue-purple);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(58, 123, 213, 0.4);
+  transition: all var(--transition-speed);
+  z-index: 10;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgba(58, 123, 213, 0.5);
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 500px;
+  padding: 2.5rem;
+  background: var(--surface-color);
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  animation: modalEnter 0.3s ease-out;
+}
+
+@keyframes modalEnter {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modalInput, .modalTextarea {
+  padding: 1.2rem;
+  border-radius: 12px;
+  border: 1px solid var(--surface-border);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--text-primary);
+  font-size: 1rem;
+  width: 100%;
+}
+
+.modalTextarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.modalInput:focus, .modalTextarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Add Task Form Elements (Shared with Modal) */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input {
+  padding: 1.2rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--surface-border);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all var(--transition-speed);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.submitBtn {
+  margin-top: 1rem;
+  padding: 1.2rem 2.5rem;
+  border-radius: 16px;
+  background: var(--grad-blue-purple);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  align-self: flex-start;
+  box-shadow: 0 10px 20px rgba(58, 123, 213, 0.3);
+  transition: all var(--transition-speed);
+}
+
+.submitBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(58, 123, 213, 0.4);
+}
+
+/* Stats */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.statCard {
+  padding: 2.5rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  transition: all var(--transition-speed);
+}
+
+.statCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.statValue {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  opacity: 0.8;
+}
+
+.statsFilters {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  align-items: flex-end;
+}
+
