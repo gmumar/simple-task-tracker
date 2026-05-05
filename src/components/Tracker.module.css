@@ -142,6 +142,8 @@
 
 .taskContent {
   flex: 1;
+  min-width: 0;
+  margin-right: 1.5rem;
   transition: opacity var(--transition-speed);
   cursor: pointer;
 }
@@ -155,6 +157,8 @@
   font-weight: 600;
   margin-bottom: 0.4rem;
   color: var(--text-primary);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .taskDescription {
@@ -162,6 +166,8 @@
   color: var(--text-secondary);
   line-height: 1.5;
   margin-bottom: 0.4rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .taskDate {
