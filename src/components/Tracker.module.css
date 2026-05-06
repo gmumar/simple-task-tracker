@@ -22,8 +22,18 @@
 
 .actions {
   display: flex;
-  gap: 1.2rem;
+  gap: 1rem;
   align-items: center;
+}
+
+.systemActions {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  z-index: 100;
 }
 
 .iconButton {
@@ -237,8 +247,8 @@
 
 /* Floating Action Button */
 .fab {
-  position: absolute;
-  bottom: 0.875rem;
+  position: fixed;
+  bottom: 2rem;
   right: 2rem;
   width: 60px;
   height: 60px;

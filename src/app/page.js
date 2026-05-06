@@ -56,8 +56,8 @@ export default function Home() {
 
   return (
     <main className={styles.container}>
-      <header className={styles.header} style={{ position: 'relative' }}>
-        <SpaceBackground tasks={tasks} />
+      <SpaceBackground tasks={tasks} />
+      <header className={styles.header}>
         <div className={styles.actions}>
           <button 
             onClick={() => setActiveTab('week')} 
@@ -73,23 +73,25 @@ export default function Home() {
           >
             <BarChart3 size={20} />
           </button>
-          <div style={{ width: '1px', backgroundColor: 'var(--surface-border)', margin: '0 0.5rem' }}></div>
-          <button onClick={handleExport} className={styles.iconButton} title="Export Database">
-            <Download size={20} />
-          </button>
-          <button onClick={() => fileInputRef.current?.click()} className={styles.iconButton} title="Import Database">
-            <Upload size={20} />
-          </button>
-          <input 
-            type="file" 
-            ref={fileInputRef} 
-            onChange={handleImport} 
-            style={{ display: 'none' }} 
-            accept=".sqlite"
-          />
-          <ThemeToggle />
         </div>
       </header>
+
+      <div className={styles.systemActions}>
+        <button onClick={handleExport} className={styles.iconButton} title="Export Database">
+          <Download size={20} />
+        </button>
+        <button onClick={() => fileInputRef.current?.click()} className={styles.iconButton} title="Import Database">
+          <Upload size={20} />
+        </button>
+        <input 
+          type="file" 
+          ref={fileInputRef} 
+          onChange={handleImport} 
+          style={{ display: 'none' }} 
+          accept=".sqlite"
+        />
+        <ThemeToggle />
+      </div>
 
       {activeTab === 'week' ? (
         <WeekView 

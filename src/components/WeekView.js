@@ -207,11 +207,12 @@ export default function WeekView({ currentDate, setCurrentDate, tasks, onTasksUp
             )}
           </div>
 
-          <button className={styles.fab} onClick={openAddModal}>
-            <Plus size={32} />
-          </button>
         </motion.div>
       </AnimatePresence>
+
+      <button className={styles.fab} onClick={openAddModal} title="Add New Task">
+        <Plus size={32} />
+      </button>
     </div>
 
     {showModal && (

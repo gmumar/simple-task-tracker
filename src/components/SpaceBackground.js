@@ -11,7 +11,7 @@ const StarField = () => {
 
   const stars = useMemo(() => {
     if (!mounted) return [];
-    return Array.from({ length: 60 }).map((_, i) => ({
+    return Array.from({ length: 150 }).map((_, i) => ({
       id: i,
       left: Math.random() * 100,
       top: Math.random() * 100,
@@ -195,6 +195,7 @@ export default function SpaceBackground({ tasks = [] }) {
         rotationSpeed: 5000 + (absS % 5000),
         radius: 20 + (absS % 50),
         size: 4 + (absS % 8),
+        yPos: 10 + (absS % 80), // Randomized Y position (10% to 90%)
         color: getStatusColor(task.status)
       };
     });
@@ -202,18 +203,11 @@ export default function SpaceBackground({ tasks = [] }) {
 
   return (
     <div style={{
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: '-80px',
-      bottom: '-80px',
+      position: 'fixed',
+      inset: 0,
       overflow: 'hidden',
       pointerEvents: 'none',
-      zIndex: -1,
-      display: 'flex',
-      alignItems: 'center',
-      maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
-      WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+      zIndex: -5,
     }}>
       <StarField />
       <AnimatePresence>
@@ -224,7 +218,13 @@ export default function SpaceBackground({ tasks = [] }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            style={{ position: 'absolute', inset: 0 }}
+            style={{ 
+              position: 'absolute', 
+              left: 0,
+              right: 0,
+              top: `${p.yPos}%`,
+              height: '1px', // Anchor for the helical rotation
+            }}
           >
             <HelicalParticle {...p} />
           </motion.div>
