@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle2, XCircle, Ban, Trophy, Undo2, Plus, X, Trash2 } from 'lucide-react';
-import { format, addWeeks, subWeeks, startOfWeek } from 'date-fns';
+import { format, addWeeks, subWeeks, startOfWeek, differenceInDays } from 'date-fns';
 import { addTask, updateTaskStatus, deleteTask, updateTask } from '@/app/actions';
 import styles from './Tracker.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -207,7 +207,10 @@ export default function WeekView({ currentDate, setCurrentDate, tasks, onTasksUp
                             {task.description && <div className={styles.taskDescription}>{task.description}</div>}
                             <div className={styles.taskDate}>
                               {isClosed ? (
-                                <>{format(new Date(task.closed_date), 'MMM do')}</>
+                                <>
+                                  {format(new Date(task.created_at), 'MMM do')} → {format(new Date(task.closed_date), 'MMM do')} 
+                                  {' '}({differenceInDays(new Date(task.closed_date), new Date(task.created_at))} days)
+                                </>
                               ) : (
                                 <>{format(new Date(task.created_at), 'MMM do')}</>
                               )}
