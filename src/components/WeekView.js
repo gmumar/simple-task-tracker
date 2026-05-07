@@ -7,7 +7,6 @@ import styles from './Tracker.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function WeekView({ currentDate, setCurrentDate, tasks, onTasksUpdated }) {
-  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -204,6 +203,8 @@ export default function WeekView({ currentDate, setCurrentDate, tasks, onTasksUp
                             onClick={() => openEditModal(task)}
                           >
                           <div className={styles.cardMain}>
+                            <div className={styles.taskTitle}>{task.title}</div>
+                            {task.description && <div className={styles.taskDescription}>{task.description}</div>}
                             <div className={styles.taskDate}>
                               {isClosed ? (
                                 <>{format(new Date(task.closed_date), 'MMM do')}</>
@@ -211,8 +212,6 @@ export default function WeekView({ currentDate, setCurrentDate, tasks, onTasksUp
                                 <>{format(new Date(task.created_at), 'MMM do')}</>
                               )}
                             </div>
-                            <div className={styles.taskTitle}>{task.title}</div>
-                            {task.description && <div className={styles.taskDescription}>{task.description}</div>}
                           </div>
                           
                           <div className={styles.taskActionsSide}>
