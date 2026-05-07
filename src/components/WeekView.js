@@ -220,6 +220,9 @@ export default function WeekView({ currentDate, setCurrentDate, tasks, onTasksUp
                           <div className={styles.taskActionsSide}>
                             {!isClosed ? (
                               <>
+                                <button className={`${styles.taskBtn} ${styles.btnComplete}`} onClick={(e) => { e.stopPropagation(); handleStatusChange(task.id, 'complete'); }} title="Complete">
+                                  <CheckCircle2 size={14} />
+                                </button>
                                 <button className={`${styles.taskBtn} ${styles.btnWin}`} onClick={(e) => { e.stopPropagation(); handleStatusChange(task.id, 'win'); }} title="Win">
                                   <Trophy size={14} />
                                 </button>
@@ -228,9 +231,6 @@ export default function WeekView({ currentDate, setCurrentDate, tasks, onTasksUp
                                 </button>
                                 <button className={`${styles.taskBtn} ${styles.btnCancel}`} onClick={(e) => { e.stopPropagation(); handleStatusChange(task.id, 'cancelled'); }} title="Cancel">
                                   <Ban size={14} />
-                                </button>
-                                <button className={`${styles.taskBtn} ${styles.btnComplete}`} onClick={(e) => { e.stopPropagation(); handleStatusChange(task.id, 'complete'); }} title="Complete">
-                                  <CheckCircle2 size={14} />
                                 </button>
                               </>
                             ) : (
