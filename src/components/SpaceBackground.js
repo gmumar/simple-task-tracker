@@ -170,7 +170,7 @@ export default function SpaceBackground({ tasks = [] }) {
       case 'lose': return 'var(--status-lose)';
       case 'cancelled': return 'var(--status-cancelled)';
       case 'complete': return 'var(--status-complete)';
-      case 'open': return 'rgba(255, 255, 255, 0.3)'; 
+      case 'open': return 'var(--status-open)'; 
       default: return 'rgba(255, 255, 255, 0.15)';
     }
   };
